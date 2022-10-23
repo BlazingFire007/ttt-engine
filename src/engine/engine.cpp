@@ -14,14 +14,13 @@ std::string root(Board b, unsigned int depth) {
   int alpha = -10000;
   int beta = 10000;
   unsigned int ply = 0;
-  int* testing_moves = b.moves();
-  for (int i = 0; i < 9; i++) {
-    std::cout << "BEFORE MAIN LOOP: " << testing_moves[i] << std::endl;
-  }
+
   int* moves = b.moves();
   for (int i = 0; i < 9; i++) {
-    if (moves[i] == -1) continue;
-    std::cout << "MAIN LOOP: " << moves[i] << std::endl;
+    if (moves[i] == -1) {
+      std::cout << "i: " << i << std::endl;
+      continue;
+    }
     b.set(b.turn, moves[i]);
     Board send_down(b.history);
     int score = -negamax(send_down, depth - 1, -beta, -alpha, ply + 1);
