@@ -8,11 +8,12 @@ void print_board(Board b);
 
 int main(int argc, char* argv[]) {
   Board b;
-  b.set(1, 3);
-  b.set(0, 4);
-  b.set(1, 7);
+  b.set(1, 4);
+  b.set(0, 8);
+  b.set(1, 0);
   string move = root(b, 5);
   cout << move << endl;
+  print_board(b);
   return 0;
 }
 

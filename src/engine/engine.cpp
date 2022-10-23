@@ -15,12 +15,9 @@ std::string root(Board b, unsigned int depth) {
   int beta = 10000;
   unsigned int ply = 0;
 
-  int* moves = b.moves();
+  std::array<int, 9> moves = b.moves();
   for (int i = 0; i < 9; i++) {
-    if (moves[i] == -1) {
-      std::cout << "i: " << i << std::endl;
-      continue;
-    }
+    if (b.moves()[i] == -1) continue;
     b.set(b.turn, moves[i]);
     Board send_down(b.history);
     int score = -negamax(send_down, depth - 1, -beta, -alpha, ply + 1);
@@ -44,7 +41,7 @@ int negamax(Board b, unsigned int depth, int alpha, int beta, unsigned int ply) 
   }
 
   int best_score = -10000;
-  int* moves = b.moves();
+  std::array<int, 9> moves = b.moves();
   for (int i = 0; i < 9; i++) {
     if (moves[i] == -1) continue;
     b.set(b.turn, moves[i]);

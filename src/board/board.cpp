@@ -29,8 +29,8 @@ bool Board::unset(uint16_t pos) {
   return true;
 }
 
-int* Board::moves() {
-  static int moves[9];
+std::array<int, 9> Board::moves() {
+  std::array<int, 9> moves;
   int i = 0;
   for (int j = 0; j < 9; j++) {
     if ((board & (1ULL << j)) == 0)
