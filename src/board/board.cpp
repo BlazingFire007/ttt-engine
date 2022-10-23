@@ -10,7 +10,7 @@ Board::Board(std::list<int> hist) {
   }
 }
 
-bool Board::set(bool player, uint16_t pos) {
+bool Board::set(bool player, int pos) {
   bitboards[player] |= 1ULL << pos;
   board |= 1ULL << pos;
   history.push_back(pos);
@@ -18,11 +18,10 @@ bool Board::set(bool player, uint16_t pos) {
   return true;
 }
 
-bool Board::get(bool player, uint16_t pos) { return (bitboards[player] & (1ULL << pos)) != 0; }
+bool Board::get(bool player, int pos) { return (bitboards[player] & (1ULL << pos)) != 0; }
 
-bool Board::unset(uint16_t pos) {
-  bitboards[0] &= ~(1ULL << pos);
-  bitboards[1] &= ~(1ULL << pos);
+bool Board::unset(bool player, int pos) {
+  bitboards[player] &= ~(1ULL << pos);
   board &= ~(1ULL << pos);
   history.pop_back();
   turn = !turn;
